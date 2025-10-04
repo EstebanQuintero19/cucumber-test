@@ -1,18 +1,8 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-const assert = require('assert');
+import { Given, When, Then } from '@cucumber/cucumber';
+import assert from 'node:assert';
+import Calculadora from '../../../../src/calculadora.js';
 
 let a, b, resultado;
-
-class Calculadora {
-    sumar(a, b) {
-        return a + b;
-    }
-
-    restar(a, b) {
-        return a - b;
-    }
-}
-
 const calculadora = new Calculadora();
 
 Given('I have the numbers {int} and {int}', function (num1, num2) {
@@ -29,5 +19,5 @@ When('I subtract them', function () {
 });
 
 Then('the result should be {int}', function (expected) {
-    assert.strictEqual(resultado, expected);
+    assert.strictEqual(resultado, expected, `Expected ${resultado} to be ${expected}`);
 });
